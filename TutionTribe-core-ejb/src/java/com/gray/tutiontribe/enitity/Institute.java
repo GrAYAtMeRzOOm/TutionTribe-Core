@@ -5,18 +5,18 @@
 package com.gray.tutiontribe.enitity;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author grays
  */
 @Entity
-@Table(name = "institute")
 public class Institute implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,6 +24,18 @@ public class Institute implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "institute")
+    private Set<Branch> branchSet;
+
+    public Set<Branch> getBranchSet() {
+        return branchSet;
+    }
+
+    public void setBranchSet(Set<Branch> branchSet) {
+        this.branchSet = branchSet;
+    }
+    
 
     public String getName() {
         return name;
@@ -33,7 +45,6 @@ public class Institute implements Serializable {
         this.name = name;
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -66,5 +77,5 @@ public class Institute implements Serializable {
     public String toString() {
         return "com.gray.tutiontribe.enitity.institute[ id=" + id + " ]";
     }
-    
+
 }

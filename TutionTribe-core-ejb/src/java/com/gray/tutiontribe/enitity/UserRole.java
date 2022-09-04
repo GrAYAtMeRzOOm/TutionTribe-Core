@@ -5,18 +5,18 @@
 package com.gray.tutiontribe.enitity;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author grays
  */
 @Entity
-@Table(name = "user_role")
 public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +24,19 @@ public class UserRole implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String roleName;
+    @OneToMany(mappedBy = "userRole")
+    private Set<User> roleUsers;
 
+    public Set<User> getRoleUsers() {
+        return roleUsers;
+    }
+
+    public void setRoleUsers(Set<User> roleUsers) {
+        this.roleUsers = roleUsers;
+    }
+
+    
+    
     public String getRoleName() {
         return roleName;
     }

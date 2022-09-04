@@ -13,14 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
  * @author grays
  */
 @Entity
-@Table(name = "lecture")
 public class Lecture implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,10 +28,10 @@ public class Lecture implements Serializable {
     private Timestamp startedTime;
     private Timestamp endedTime;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "branch_id", referencedColumnName = "id", table = "branch")
+    @JoinColumn(name = "branch_id", referencedColumnName = "id")
     private Branch branch;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "presented_user_id", referencedColumnName = "id", table = "user")
+    @JoinColumn(name = "presented_user_id", referencedColumnName = "id")
     private User presentedUser;
     
 

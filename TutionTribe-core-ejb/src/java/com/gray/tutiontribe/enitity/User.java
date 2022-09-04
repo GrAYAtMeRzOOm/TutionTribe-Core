@@ -6,22 +6,24 @@ package com.gray.tutiontribe.enitity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
  * @author grays
  */
 @Entity
-@Table(name = "user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,21 +39,19 @@ public class User implements Serializable {
     @JoinColumn(name="branch_id", nullable=false)
     private Branch branch;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_role_id", referencedColumnName = "id", table = "user_role")
+    @JoinColumn(name = "user_role_id", referencedColumnName = "id")
     private UserRole userRole;
     
-    @ManyToOne
-    @JoinColumn(name="attendance_id", nullable=false)
-    private Attendance attendance;
+    @ManyToMany
+    private Set<Attendance> attendance;
 
-    public Attendance getAttendance() {
+    public Set<Attendance> getAttendance() {
         return attendance;
     }
 
-    public void setAttendance(Attendance attendance) {
+    public void setAttendance(Set<Attendance> attendance) {
         this.attendance = attendance;
     }
-    
     
 
     public UserRole getUserRole() {
@@ -71,9 +71,6 @@ public class User implements Serializable {
     public void setBranch(Branch branch) {
         this.branch = branch;
     }
-
-   
-
     
     public Date getDob() {
         return dob;

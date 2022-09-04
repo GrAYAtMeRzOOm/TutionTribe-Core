@@ -13,16 +13,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
  * @author grays
  */
 @Entity
-@Table(name = "attendance")
 public class Attendance implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,10 +29,9 @@ public class Attendance implements Serializable {
     private Long id;
     private Timestamp dateTime;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "lecturer_id", referencedColumnName = "id", table = "user")
+    @JoinColumn(name = "lecturer_id", referencedColumnName = "id")
     private User lecturer;
-    @OneToMany(mappedBy = "students")
-    @JoinColumn(name = "student_id", referencedColumnName = "id", table = "user")
+    @ManyToMany
     private Set<User> students;
 
     public Timestamp getDateTime() {
