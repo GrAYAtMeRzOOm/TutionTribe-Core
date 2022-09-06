@@ -4,10 +4,10 @@
  */
 package com.gray.tutiontribe.controller;
 
-import com.gray.tutiontribe.enitity.Branch;
-import com.gray.tutiontribe.enitity.Institute;
-import com.gray.tutiontribe.enitity.User;
-import com.gray.tutiontribe.enitity.UserRole;
+import com.gray.tutiontribe.entity.Branch;
+import com.gray.tutiontribe.entity.Institute;
+import com.gray.tutiontribe.entity.User;
+import com.gray.tutiontribe.entity.UserRole;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
